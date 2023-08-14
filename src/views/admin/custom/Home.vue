@@ -1,53 +1,69 @@
 <template>
     <div class="admin">
         <h1 id="homeManager-head">HOME MANAGER</h1>
-        <svg>
-            <use href="@/assets/icons/icons.svg#return"></use>
-        </svg>
 
-        <svg>
-            <use href="@/assets/icons/icons.svg#upload"></use>
-        </svg>
+        <!-- <section id="heroEdit">
+            <h1>IMAGE HERO</h1>
+            <h2>Modifier l'image de couverture</h2>
 
 
-        {{ homeColor }}
-        <section id="colorTable">
-            <h1>TABLE DES COULEURS</h1>
-            <h2>Modifier le thème avec la table des couleurs</h2>
-            <div class="container-grid">
-                <div class="swatch">
-                    <input type="color" class="colorSelector" name="couleur" v-model="homeColor">
-                    <div class="info">
-                        <h1>FOND</h1>
-                        <h2 class="hexaCode">{{ homeColor }}</h2>
-                    </div>
-                </div>
+            <label :for="'changeImg' + index" class="label-changeFile">
+                                <svg class="icon upload-icon">
+                                    <use href="@/assets/icons/icons.svg#upload"></use>
+                                </svg>
+                                <input class="changeFile" :id="'changeImg' + index" type="file"
+                                    @change="$event => selectFileHero($event, index)"
+                                    accept="image/png, image/jpg, image/jpeg" />
+                            </label>
 
-                <div class="swatch">
-                    <input type="color" class="colorSelector" name="couleur" v-model="titleColor">
-                    <div class="info">
-                        <h1>TITRAGES</h1>
-                        <h2 class="hexaCode">{{ titleColor }}</h2>
-                    </div>
-                </div>
-
-                <div class="swatch">
-                    <input type="color" class="colorSelector" name="couleur" v-model="navColor">
-                    <div class="info">
-                        <h1>NAVIGATION</h1>
-                        <h2 class="hexaCode">{{ navColor }}</h2>
-                    </div>
-                </div>
-
-                <div class="swatch">
-                    <input type="color" class="colorSelector" name="couleur" v-model="btnColor">
-                    <div class="info">
-                        <h1>BOUTONS</h1>
-                        <h2 class="hexaCode">{{ btnColor }}</h2>
-                    </div>
-                </div>
+            <div class="mainImageEdit">
+                <img class="bigImg" src="@/assets/img/hero2.jpg" alt="">
             </div>
-        </section>
+
+        </section> -->
+
+        <!-- <section id="colorTable">
+
+            <h1>TABLE DES COULEURS</h1>
+            {{ getPublicStyle('bgColor') }}
+
+            <h2>Modifier le thème avec la table des couleurs</h2>
+            <form enctype='multipart/form-data' @submit.prevent="$event => updatePublicStyle()">
+                <div class="container-grid">
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" name="bgColor" v-model="bgColor">
+                        <div class="info">
+                            <h1>FOND</h1>
+                            <h2 class="hexaCode">{{ getPublicStyle('bgColor') }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" name="couleur" v-model="titleColor">
+                        <div class="info">
+                            <h1>TITRAGES</h1>
+                            <h2 class="hexaCode">{{ titleColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" name="couleur" v-model="navColor">
+                        <div class="info">
+                            <h1>NAVIGATION</h1>
+                            <h2 class="hexaCode">{{ navColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" name="couleur" v-model="btnColor">
+                        <div class="info">
+                            <h1>BOUTONS</h1>
+                            <h2 class="hexaCode">{{ btnColor }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section> -->
 
 
         <section class="section-marketing">
@@ -57,7 +73,7 @@
             <div class="container-grid">
 
                 <div class="banner" v-for="(post, index) in home" :key="post._id">
-                    <form enctype='multipart/form-data' @submit.prevent="$event => editPost(index)">
+                    <form enctype='multipart/form-data' @submit.prevent="$event => editPost('marketing' , index)">
                         <div class="banner-content">
                             <label :for="'changeImg' + index" class="label-changeFile">
                                 <svg class="icon upload-icon">
@@ -83,8 +99,8 @@
 
                                     <div class="btn-textarea" v-if="activeIndex === 'title' + index">
                                         <!-- <button class="btn" @click.stop.prevent="validModif('cardTitle', index)">ok</button> -->
-                                        <button class="btn"
-                                            @click.stop.prevent="cancelModif('cardTitle', index)">annuler</button>
+                                        <!-- <button class="btn"
+                                            @click.stop.prevent="cancelModif('cardTitle', index)">annuler</button> -->
                                     </div>
                                 </div>
                                 <div class="edit-card" @click="activeIndex = 'description' + index">
@@ -95,27 +111,29 @@
                                     <div v-if="activeIndex === 'description' + index" class="btn-textarea">
                                         <!-- <button class="btn"
                                             @click.stop.prevent="validModif('description', index)">ok</button> -->
-                                        <button class="btn"
-                                            @click.stop.prevent="cancelModif('description', index)">annuler</button>
+                                        <!-- <button class="btn"
+                                            @click.stop.prevent="cancelModif('description', index)">annuler</button> -->
                                     </div>
                                 </div>
 
 
 
                             </div>
-                            <label :for="'optionBtn' + index">Que fait le bouton?</label>
-                            <select :name="'optionBtn' + index" class="btn" v-model="post.btnOption" required>
+                            <!-- <label :for="'optionBtn' + index">Que fait le bouton?</label>
+                            <select :name="'optionBtn' + index" class="btn" v-model="post.btnOption">
                                 <option value="menu">DECOUVRIR</option>
                                 <option value="signup">SIGN UP</option>
                                 <option value="order">COMMANDEZ</option>
-                            </select>
+                            </select> -->
                             <button type="submit" class="btn green">PUBLIER</button>
+                            <button class="btn" @click.stop.prevent="cancelEdit('marketing', index)">annuler</button>
                         </div>
                     </form>
                 </div>
 
 
             </div>
+
         </section>
 
 
@@ -128,6 +146,7 @@
 
 <script>
 import { customService } from '@/services/custom.service';
+import { mapGetters, mapMutations } from "vuex";
 export default {
     name: 'homeEdit',
     components: {
@@ -137,7 +156,6 @@ export default {
             home: [],
             originalData: [],
             activeIndex: '#1C1C1C',
-            homeColor: '#1C1C1C',
             titleColor: '#1C1C1C',
             navColor: '#1C1C1C',
             btnColor: '#1C1C1C',
@@ -147,23 +165,38 @@ export default {
 
     methods: {
 
-
-        cancelModif(modification, index) {
-
-            console.log(index)
-            if (modification === "cardTitle") {
-
-                this.home[index].titlePost = this.originalData[index].titlePost
-
-            }
-
-            if (modification === "description") {
-
-                this.home[index].descriptionPost = this.originalData[index].descriptionPost
-
-            }
-            this.activeIndex = null
+        ...mapMutations(['changePublicStyle']),
+        updatePublicStyle() {
+            this.changePublicStyle((newStyle))
         },
+
+        cancelEdit(section, index) {
+
+            if(section === 'marketing'){
+            this.home[index].titlePost = this.originalData[index].titlePost
+            this.home[index].descriptionPost = this.originalData[index].descriptionPost
+            this.home[index].imgPost = this.originalData[index].imgPost
+            this.home[index].newFile = null
+            }
+
+        },
+
+        // cancelModif(modification, index) {
+
+        //     console.log(index)
+        //     if (modification === "cardTitle") {
+
+        //         this.home[index].titlePost = this.originalData[index].titlePost
+
+        //     }
+
+        //     if (modification === "description") {
+
+        //         this.home[index].descriptionPost = this.originalData[index].descriptionPost
+
+        //     }
+        //     this.activeIndex = null
+        // },
 
         validModif(modification) {
 
@@ -179,6 +212,13 @@ export default {
 
         },
 
+        selectFileHero(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.home.imgHero = URL.createObjectURL(file);
+                this.home.newFileHero = file;
+            }
+        },
 
         selectFile1(event, index) {
             const file = event.target.files[0];
@@ -187,6 +227,8 @@ export default {
                 this.home[index].newFile = file;
             }
         },
+
+
 
 
         createPost(index) {
@@ -208,8 +250,9 @@ export default {
 
 
 
-        editPost(index) {
+        editPost(section, index) {
 
+            if(section === 'marketing'){
             const formData = new FormData();
             formData.append('titlePost', this.home[index].titlePost);
             formData.append('descriptionPost', this.home[index].descriptionPost);
@@ -220,19 +263,29 @@ export default {
                 .then(res => {
                     console.log(res)
                     this.home[index].newFile = null
+                    this.originalData[index].imgPost = this.home[index].imgPost
 
                 })
                 .catch(err => console.log(err))
+            }
 
         },
+        
+    },
+
+    computed: {
+        ...mapGetters(['getPublicStyle']),
+
     },
 
     mounted() {
+
         customService.getContent()
             .then(res => {
 
                 this.originalData = JSON.parse(JSON.stringify(res.data.home))
                 this.home = res.data.home
+                console.log(this.home)
 
 
 
@@ -330,6 +383,9 @@ export default {
     padding: 0;
 }
 
+
+
+
 .btnMobile {
     z-index: 9999;
     position: fixed;
@@ -379,8 +435,13 @@ export default {
 
 }
 
-.label-changeFile:hover+.picture .oldImg {
+/* .label-changeFile:hover+.picture .oldImg {
     transition: 0.5s ease;
+    filter: brightness(0.7);
+} */
+
+.newImg {
+    /* transition: 1s ease; */
     filter: brightness(0.7);
 }
 
@@ -393,8 +454,10 @@ export default {
     cursor: pointer;
     z-index: 1;
     position: absolute;
-    top: 3%;
-    right: 2%;
+    translate: -50%, -50%;
+    transform: translate(50%, -50%);
+    top: 50%;
+    right: 50%;
 }
 
 
@@ -414,6 +477,17 @@ export default {
     overflow: hidden;
 }
 
+.mainImageEdit{
+    position: relative;
+    padding: 26% 5% 36% 25%;
+    display: block;
+    width: 47%;
+    height: 100%;
+    border: solid 0.3em white;
+    border-radius: 3em;
+    overflow: hidden;
+    margin: auto;
+}
 .bigImg {
     position: absolute;
     top: 0;
@@ -566,10 +640,10 @@ export default {
 
 
     .btn:hover {
-    background-color: #ffbd6c;
-    box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 4px 2px #11111199;
-    transform: scale(1.1);
-}
+        background-color: #ffbd6c;
+        box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 4px 2px #11111199;
+        transform: scale(1.1);
+    }
 
 }
 </style>

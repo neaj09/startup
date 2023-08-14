@@ -34,9 +34,9 @@ export default {
 }
 
 .navbar {
-    z-index: 900;
+    z-index: 100;
     width: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     height: 85px;
     background-color: #1C1C1C;
@@ -49,7 +49,7 @@ export default {
     list-style: none;
     display: flex;
     flex-wrap: nowrap;
-    float: right;
+    float: left;
     align-items: center;
 }
 
@@ -105,4 +105,5 @@ export default {
 
 .dropdown:hover .dropdown-content {
     display: block;
-}</style>
+}
+</style>

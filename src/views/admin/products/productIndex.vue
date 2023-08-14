@@ -1,6 +1,7 @@
 <template>
     <div class="admin">
         <div class="admin-content">
+            <router-link class="navBarLink" to="/admin/products/add">ajout produit</router-link>
             <h1>Liste des Produits</h1>
             <h2>Assurez-vous que votre menu est correct</h2>
 

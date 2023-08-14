@@ -4,16 +4,13 @@
       <li><router-link class="navBarLink" to="/">Home</router-link></li>
       <li><router-link class="navBarLink" to="/menu">CARTE</router-link></li>
       <li><router-link class="navBarLink" to="/admin/dashboard">Admin</router-link></li>
-      <li><router-link class="navBarLink" to="/">Home</router-link></li>
-      <li><router-link class="navBarLink" to="/menu">CARTE</router-link></li>
-      <li><router-link class="navBarLink" to="/admin/dashboard">Admin</router-link></li>
     </ul>
   </div>
   <label>
     <input type="checkbox" v-model="menuIsActive">
     <span class="menu">
       <span class="exit" :class="{'halbaxit': menuIsActive}" ></span>
-      <img class="logo" src="@/assets/icons/logo.svg" :class="{'halba': menuIsActive}">
+      <img class="logo" src="@/assets/logo.png" :class="{'halba': menuIsActive}">
     </span>
   </label>
 
@@ -76,7 +73,7 @@ export default {
 }
 
 
-.logo {
+/* .logo {
   width: 128px;
   position: fixed;
   top: 50px;
@@ -85,17 +82,28 @@ export default {
   transform: rotate(16deg);
   transition: 0.5s ease-in-out;
   opacity: 1;
+} */
+
+.logo{
+    z-index: 901;
+    width: 133px;
+    position: fixed;
+    top: 76px;
+    right: -57px;
+    translate: -50% -50%;
+    /* transform: rotate(16deg); */
+    transition: 0.5s ease-in-out;
+    opacity: 1;
 }
 
 .navBar {
-  z-index: 9;
+  z-index: 99;
   width: 100%;
   position: fixed;
   top: 0px;
   height: 110px;
   background-image: linear-gradient(180deg, #000000 -30%, #21212100);
-  display: flex;
-  /* TEST */
+  /* display: flex; */
   overflow-x: scroll;
 }
 
@@ -118,7 +126,7 @@ export default {
 
 .navUl li {
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 
 .navBarLink {
@@ -137,6 +145,10 @@ export default {
   padding-right: 50px;
 }
 
+
+
+/* NEW DELICE
+
 label .menu {
   position: fixed;
   right: 35px;
@@ -150,6 +162,21 @@ label .menu {
   transition: 0.4s ease-in-out;
   box-shadow: -1px 1px 9px 0px #0000007d, 0 0 0 0 #000;
   cursor: pointer;
+} */
+
+label .menu{
+position: fixed;
+    right: 25px;
+    top: 40px;
+    z-index: 100;
+    width: 104px;
+    height: 69px;
+    background: #1c1c1c;
+    border-radius: 28px 28px 28px 28px;
+    transition: opacity 0.3s ease;
+    transition: 0.4s ease-in-out;
+    box-shadow: -1px 1px 9px 0px #0000007d, 0 0 0 0 #000;
+    cursor: pointer;
 }
 
 label .hamburger {
@@ -332,6 +359,8 @@ label input:checked+.menu+.navLink {
   border-bottom: 4px solid darkorange;
   padding-bottom: 8px;
 }
+
+
 </style>
   
 

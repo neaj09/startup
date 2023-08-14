@@ -5,6 +5,8 @@ import userIndex from './user/userIndex.vue'
 import userEdit from './user/userEdit.vue'
 import userAdd from './user/userAdd.vue'
 
+import clientIndex from './client/clientIndex'
+
 import productIndex from './products/productIndex.vue'
 import productAdd from './products/productAdd.vue'
 import productEdit from './products/productEdit.vue'
@@ -16,5 +18,5 @@ import homeEdit from './custom/Home.vue'
 export{
     adminLayout, Dashboard, 
     userIndex, userEdit, userAdd, 
-    productIndex, productEdit, productAdd, homeEdit
+    productIndex, productEdit, productAdd, homeEdit, clientIndex
 }

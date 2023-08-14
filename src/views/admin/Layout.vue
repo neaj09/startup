@@ -1,9 +1,8 @@
 <template>
 <div class="layout">
     <div class="admin">Admin Layout
-    <BurgerNav/>
+    <burgerNavAdmin/>
         ADMIN
-    <AdminNav/>
     <router-view/> 
     </div> 
 </div>  
@@ -13,13 +12,14 @@
 import PublicNav from '@/components/PublicNav.vue';
 import AdminNav from '@/components/AdminNav.vue';
 import BurgerNav from '@/components/BurgerNav.vue';
+import burgerNavAdmin from '@/components/burgerNavAdmin.vue';
 
 export default{
     name: 'PublicLayout',
     components: {
         PublicNav,
         AdminNav,
-        BurgerNav,
+        burgerNavAdmin,
 
     }
 

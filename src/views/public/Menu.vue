@@ -60,10 +60,13 @@ export default {
             products: [],
             selectedCategories: [],
             categories: [
-                "sandwichs",
+                "BAGUETTE",
                 "burger",
                 "tacos",
+                "muffin",
                 "texmex",
+                "pizza",
+                "boisson",
             ],
             searchKey: "",
             panier: []
@@ -150,7 +153,6 @@ export default {
     height: 40px;
     cursor: pointer;
     /* overflow: hidden; */
-
     margin: 10px;
     padding: 10px 12px;
 
@@ -194,13 +196,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-
     padding: 10px 12px;
     max-width: 180px;
     height: auto;
@@ -365,11 +365,6 @@ export default {
         width: calc(33% - 18px);
         margin: 8px;
     }
-
-    .switch input:hover+span {
-    background-color: #ffbd6c;
-    transform: scale(1.1);
-}
 }
 
 /*-------------- SCREEN supérieur 960 -------------*/
@@ -378,6 +373,11 @@ export default {
         width: calc(25% - 20px);
         margin: 8px;
     }
+
+    .switch input:hover+span {
+    background-color: #ffbd6c;
+    transform: scale(1.1);
+}
 
 
 }

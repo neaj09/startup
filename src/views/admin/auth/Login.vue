@@ -1,7 +1,5 @@
 <template>
 <div class="admin">
-		<PublicNav/>
-        <BurgerNav/>
 		<h2>Authentification</h2>
 		<form @submit.prevent="login">
 			<label>Email:</label>

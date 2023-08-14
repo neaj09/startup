@@ -1,10 +1,9 @@
 <template>
 <div class="admin">
-		<PublicNav/>
 		<h2>S'inscrire</h2>
 		<form @submit.prevent="signup">
             <label>Username</label>
-			<input type="text" v-model="credentials.userName" required autocomplete="usernamed">
+			<input type="text" v-model="credentials.name" required autocomplete="usernamed">
 
 			<label>Email:</label>
 			<input type="email" v-model="credentials.email" required>
@@ -27,7 +26,7 @@ export default {
     data() {
         return {
             credentials: {
-                userName: "",
+                name: "",
                 email: "",
                 password: "",
             }

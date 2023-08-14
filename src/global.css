@@ -12,6 +12,54 @@
     font-style: normal;
   }
 
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
   html{
     scroll-behavior:smooth;
@@ -29,6 +77,9 @@
   
   body{
     overflow-x: hidden;
+    overflow-wrap: break-word;
+    /* Pour la compatibilité avec les anciens navigateurs */
+    word-wrap: break-word;
   }
 
   @media screen and (max-width: 767px) {
@@ -43,9 +94,14 @@
 
 
       /* pour supprimer la scroll bar*/
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-      overflow: -moz-scrollbars-none;  /* Firefox */
+
+       /* IE and Edge */
+       /* Firefox */
+       /* Firefox */
+      /* -ms-overflow-style: none; 
+      scrollbar-width: none;  
+      overflow: -moz-scrollbars-none;   */
+
 
 
     }
@@ -65,15 +121,47 @@
 
   
   /* Masquer la scrollbar verticale pour Chrome, Safari et Opera */
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     display: none;
+  } */
+
+  ::-webkit-scrollbar {
+    height: 0px;
+    width: 7px;
+    background-color: #cfa7a4;
+    border-radius: 25px;
   }
   
   
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    height: 0px;
+    border-radius: 24px;
+  }
+  
+  
+  /* ::webkit-scrollbar-corner {
+    background-color: blue;
+    height: 0px;
+  } */
+  
+  /* ::-webkit-scrollbar-thumb:hover {
+    background-color: red;
+    height: 5px;
+    width: 5px;
+  } */
+
+/* Personnaliser le chemin de défilement (la zone où la barre de défilement se déplace) */
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+} */
+
+
   h1{
     user-select: none;
-    font-family: 'Subtlecurves';
-    color: white
+    font-family: 'Poetsen one';
+    color: white;
+    font-size: 2.4em;
   }
 
   h2{
@@ -87,34 +175,59 @@
     background-color: #f5ebdc;
   }
 
+  .btn {
+    font-size: 15px;
+      font-family: 'Poetsen One';
+      padding: 4px 6px;
+      background-color: #fef3ed;
+      color: #835c58;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      border: none;
+      /* border-width: 2px; */
+      /* border: solid white 2px; */
+      /* box-shadow: 0px 1px 2px #111111de; */
+      box-shadow: 0px 2px 2px 0px #75234133;
+      transition: 0.3s ease;
+  }
 
-  #public{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 90px;
-    padding-bottom: 40px;
-    background-color: #f5ebdc;
-}
+  
 
 .navMobile{
   display: none;
 }
 
-@media screen and (max-width: 650px){
+h1 {
+  font-family: 'Poetsen one';
+  max-width: 100%;
+  font-size: 2.4em;
+  color: #835b58;
+
+
+}
+
+h2 {
+  font-family: 'Poetsen one';
+  max-width: 100%;
+  font-size: 1.45em;
+  color: #fa9a71;
+  margin: 0.5em;
+}
+
+
+
+
+@media screen and (max-width: 900px){
 
 .navbar{
     display: none;
 }
 
-.navMobile{
-  display: block;
+.navBar{
+  display: flex;
 }
 
-#public{
-
-}
 
 
 }

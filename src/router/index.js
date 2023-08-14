@@ -30,10 +30,15 @@ const routes = [
     // si requireAuth: true alors les éléments seront renvoyé vers un beforeEach plus bas
     children: [
       { path: 'dashboard', name: 'Dashboard', component: Admin.Dashboard, meta: {requireAuth: true }},
-      { path: 'user/index', name: 'userIndex', component: Admin.userIndex, meta: {requireAuth: true } },
+      { path: 'user/index', name: 'userIndex', component: Admin.userIndex, meta: {requireAuth: true }, children:[
+        { path: 'user/add', name: 'userAdd', component: Admin.userAdd, meta: {requireAuth: true } },
+        { path: 'user/edit', name: 'userEdit', component: Admin.userEdit, meta: {requireAuth: true } },
+      ] },
       { path: 'user/add', name: 'userAdd', component: Admin.userAdd, meta: {requireAuth: true } },
       { path: 'user/edit', name: 'userEdit', component: Admin.userEdit, meta: {requireAuth: true } },
 
+
+      { path: 'client', name: 'clientIndex', component: Admin.clientIndex, meta: {requireAuth: true }},
       { path: 'content', name: 'homeEdit', component: Admin.homeEdit},
 
 

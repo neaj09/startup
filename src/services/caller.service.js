@@ -4,7 +4,7 @@ import router from "@/router"
 
 // URL d'accès à mon serveur
 const Axios = axios.create({
-    baseURL: 'https://back-8hi1.onrender.com'
+    baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3000/'
 })
 
 // intercepte la requête et ajoute le token dans l'entête Authorization
