@@ -1,6 +1,4 @@
 <template>
-  {{ menuIsActive }}
-
   <div class="move" ref="roundDiv" @mousedown.prevent.stop="startDrag"
     @touchstart.prevent="startDragTouch" @touchmove.prevent="doDragTouch" @touchend="endDragTouch">
 

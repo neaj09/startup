@@ -1,14 +1,14 @@
 <template>
-<div class="layout">
-    <div class="admin">Admin Layout
+<div :style="{ backgroundColor: publicStyle.backgroundColor }" class="layout">
     <burgerNavAdmin/>
-        ADMIN
+    <div class="admin">
     <router-view/> 
     </div> 
 </div>  
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import PublicNav from '@/components/PublicNav.vue';
 import AdminNav from '@/components/AdminNav.vue';
 import BurgerNav from '@/components/BurgerNav.vue';
@@ -21,7 +21,10 @@ export default{
         AdminNav,
         burgerNavAdmin,
 
-    }
+    },
+    computed: {
+    ...mapState(['publicStyle']),
+  },
 
 }
 
@@ -30,21 +33,14 @@ export default{
 <style>
 
 .admin {
-    margin-top: 85px;
-    background-color:#f5ebdc
-    /* background-color: #ffc47a;
-    background: linear-gradient(45deg,#ffba59,#ffd6bd); */
-}
-
-.admin-content {
-    box-sizing: border-box;
-    padding: 30px;
+    padding: 140px 3% 0px 3%;
 }
 
 .content-wrap {
     margin-top: 30px;
     margin-bottom: 20px;
 }
+
 
 .form-style-1 {
     margin: 10px auto;
@@ -151,5 +147,6 @@ select {
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: red;
 }
+
 
 </style> 

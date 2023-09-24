@@ -28,6 +28,7 @@
 </template>
   
 <script>
+
 export default {
   name: "BurgerNav",
   data() {
@@ -37,8 +38,6 @@ export default {
     }
   },
 
-  computed: {
-  },
 
 
   methods: {
@@ -85,13 +84,12 @@ export default {
 } */
 
 .logo{
-    z-index: 901;
-    width: 133px;
+  z-index: 901;
+    width: 7em;
     position: fixed;
-    top: 76px;
-    right: -57px;
+    top: 63px;
+    right: -47px;
     translate: -50% -50%;
-    /* transform: rotate(16deg); */
     transition: 0.5s ease-in-out;
     opacity: 1;
 }
@@ -103,7 +101,6 @@ export default {
   top: 0px;
   height: 110px;
   background-image: linear-gradient(180deg, #000000 -30%, #21212100);
-  /* display: flex; */
   overflow-x: scroll;
 }
 
@@ -118,6 +115,7 @@ export default {
   align-items: center;
   padding: 0;
   margin: 0;
+  margin-top: 39px;
   overflow: scroll;
   padding: 3% 3% 3% 5%;
 
@@ -126,7 +124,7 @@ export default {
 
 .navUl li {
   padding-left: 10px;
-  padding-right: 30px;
+  padding-right: 10px;
 }
 
 .navBarLink {
@@ -165,16 +163,15 @@ label .menu {
 } */
 
 label .menu{
-position: fixed;
-    right: 25px;
-    top: 40px;
+  position: fixed;
+    right: 29px;
+    top: 27px;
     z-index: 100;
-    width: 104px;
-    height: 69px;
+    width: 4.5em;
+    height: 4.5em;
     background: #1c1c1c;
-    border-radius: 28px 28px 28px 28px;
-    transition: opacity 0.3s ease;
-    transition: 0.4s ease-in-out;
+    border-radius: 100px;
+    transition: 0.5s ease-in-out;
     box-shadow: -1px 1px 9px 0px #0000007d, 0 0 0 0 #000;
     cursor: pointer;
 }
@@ -195,20 +192,17 @@ label .hamburger {
 }
 
 label .exit{
-position: absolute;
+  position: absolute;
     top: 31px;
-    right: 35px;
+    right: 21px;
     width: 31px;
     height: 7px;
     background: #ffffff;
     display: block;
     transform-origin: center;
-    border-radius: 12px;
     transition: 1s cubic-bezier(0, 0.19, 0.12, 1.02);
     border-radius: 12px;
-
     rotate: 45deg;
-    scale: (0.001);
     
 }
 

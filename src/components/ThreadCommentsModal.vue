@@ -116,6 +116,20 @@ export default {
   
 <style scoped>
 
+::-webkit-scrollbar {
+    height: 0px;
+    width: 7px;
+    background-color: #cfa7a4;
+    border-radius: 25px;
+  }
+  
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    height: 0px;
+    border-radius: 24px;
+  }
+
 .modal {
     display: flex;
     position: absolute;
@@ -137,7 +151,7 @@ export default {
     padding-right: 7px;
     height: 100%;
     align-items: center;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .feed-header {

@@ -219,21 +219,14 @@ export default {
 }
 
 .titlesection {
-    color: #ffffff;
-    font-family: 'Subtlecurves';
-    /* font-size: 57px; */
-    margin: 4px;
     font-size: calc(20px + 4vw);
-    text-shadow: 0px 3px 0px #4c3a32ba;
-    border-radius: 15px;
     margin-top: 25px;
     margin: auto;
-    margin-top: 20px;
     margin-bottom: 20px;
-    width: 95%;
-    background-color: #ab5b1e5e;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    text-align: center;
+    border-bottom: solid 2px var(--moduleColor);
+    margin-bottom: 30px;
+    color: var(--moduleColor)
 }
 
 
@@ -245,13 +238,16 @@ export default {
 }
 
 .produit {
-    /* display: flex; */
     position: relative;
     width: calc(50% - 14px);
-    border: solid 2px #e0a463;
     border-radius: 12px;
     margin: 5px;
     overflow: hidden;
+    background-color: #ffffffc2;
+    box-shadow: 0px 2px 3px 0px #00000069;
+
+
+    /* border: solid 2px var(--moduleColor); */
 }
 
 .infos {
@@ -261,12 +257,14 @@ export default {
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    background-color: #e0a463;
     margin-top: 0;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
     height: 100%;
+    text-align: left;
+
+    background-color: var(--moduleColor);
 }
 
 .pictureProduit {
@@ -325,7 +323,7 @@ export default {
     font-size: calc(14px + 1.5vw);
     /* font-size: 20px; */
     margin: 0 0 5px 0;
-    color: white;
+    color: var(--textColor);
     padding: 0;
 }
 
@@ -336,14 +334,15 @@ export default {
     text-transform: uppercase;
     /* font-size: 13px; */
     font-size: calc(8px + 1vw);
-    color: rgb(76 58 50);
+    color: white;
+
 }
 
 .prix {
     font-size: calc(14px + 1.5vw);
     font-family: 'Subtlecurves';
     margin: 0 0 0 5px;
-    color: #4c3a32;
+    color: white
 }
 
 /*-------------- SCREEN inférieur à 600 -------------*/

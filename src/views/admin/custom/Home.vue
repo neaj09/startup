@@ -1,79 +1,134 @@
 <template>
-    <div class="admin">
         <h1 id="homeManager-head">HOME MANAGER</h1>
-
-        <!-- <section id="heroEdit">
+        <section id="heroEdit" class="module">
             <h1>IMAGE HERO</h1>
-            <h2>Modifier l'image de couverture</h2>
+            <moreDetail>
+                <template #summary>
+                    <h2>Modifier l'image de couverture de la page d'accueil</h2>
+                </template>
+                <p>Ceci est le contenu personnalisé du détail.</p>
+            </moreDetail>
 
+            <form enctype='multipart/form-data' @submit.prevent="$event => editHero()">
+                <div class="banner-content">
+                    <label for="changeHero" class="label-changeFile">
+                        <svg class="icon upload-icon">
+                            <use href="@/assets/icons/icons.svg#upload"></use>
+                        </svg>
+                        <input class="changeFile" id="changeHero" type="file" @change="$event => selectFileHero($event)"
+                            accept="image/png, image/jpg, image/jpeg" />
+                    </label>
 
-            <label :for="'changeImg' + index" class="label-changeFile">
-                                <svg class="icon upload-icon">
-                                    <use href="@/assets/icons/icons.svg#upload"></use>
-                                </svg>
-                                <input class="changeFile" :id="'changeImg' + index" type="file"
-                                    @change="$event => selectFileHero($event, index)"
-                                    accept="image/png, image/jpg, image/jpeg" />
-                            </label>
-
-            <div class="mainImageEdit">
-                <img class="bigImg" src="@/assets/img/hero2.jpg" alt="">
-            </div>
-
-        </section> -->
-
-        <!-- <section id="colorTable">
-
-            <h1>TABLE DES COULEURS</h1>
-            {{ getPublicStyle('bgColor') }}
-
-            <h2>Modifier le thème avec la table des couleurs</h2>
-            <form enctype='multipart/form-data' @submit.prevent="$event => updatePublicStyle()">
-                <div class="container-grid">
-                    <div class="swatch">
-                        <input type="color" class="colorSelector" name="bgColor" v-model="bgColor">
-                        <div class="info">
-                            <h1>FOND</h1>
-                            <h2 class="hexaCode">{{ getPublicStyle('bgColor') }}</h2>
-                        </div>
-                    </div>
-
-                    <div class="swatch">
-                        <input type="color" class="colorSelector" name="couleur" v-model="titleColor">
-                        <div class="info">
-                            <h1>TITRAGES</h1>
-                            <h2 class="hexaCode">{{ titleColor }}</h2>
-                        </div>
-                    </div>
-
-                    <div class="swatch">
-                        <input type="color" class="colorSelector" name="couleur" v-model="navColor">
-                        <div class="info">
-                            <h1>NAVIGATION</h1>
-                            <h2 class="hexaCode">{{ navColor }}</h2>
-                        </div>
-                    </div>
-
-                    <div class="swatch">
-                        <input type="color" class="colorSelector" name="couleur" v-model="btnColor">
-                        <div class="info">
-                            <h1>BOUTONS</h1>
-                            <h2 class="hexaCode">{{ btnColor }}</h2>
-                        </div>
+                    <div class="picture">
+                        <img v-if="this.hero" class="oldImg" :class="{ 'newImg': this.hero.newFile }"
+                            :src="this.hero.imgHero">
                     </div>
                 </div>
+                <button type="submit" class="btn">PUBLIER</button>
             </form>
-        </section> -->
+        </section>
+
+        <section id="colorTable" class="module">
+
+            <h1>TABLE DES COULEURS</h1>
+
+            <moreDetail>
+                <template #summary>
+                    <h2>Modifier le thème avec la table des couleurs</h2>
+                </template>
+                <p>Ceci est le contenu personnalisé du détail.</p>
+            </moreDetail>
+
+            <form @submit.prevent="saveStyle">
+
+                <div class="container-grid">
+
+                    <div class="swatch">
+
+                        <input type="color" class="colorSelector" id="backgroundColor"
+                            v-model="publicStyle.backgroundColor" @input="updateColor('backgroundColor')">
+                        <div class="info">
+                            <label for="backgroundColor">
+                                <h1>GENERAL</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.backgroundColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" id="homeColor" v-model="publicStyle.homeColor" @input="updateColor('homeColor')">
+                        <div class="info">
+                            <label for="homeColor">
+                                <h1>PAGE HOME</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.homeColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+
+                        <input type="color" class="colorSelector" id="moduleColor" v-model="publicStyle.moduleColor"  @input="updateColor('moduleColor')">
+                        <div class="info">
+                            <label for="moduleColor">
+                                <h1>MODULES</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.moduleColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+
+                        <input type="color" class="colorSelector" id="buttonColor" v-model="publicStyle.buttonColor" @input="updateColor('buttonColor')">
+                        <div class="info">
+                            <label for="buttonColor">
+                                <h1>BOUTTON</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.buttonColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" id="titleColor" v-model="publicStyle.titleColor" @input="updateColor('titleColor')">
+                        <div class="info">
+                            <label for="titleColor">
+                                <h1>TITRAGE</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.titleColor }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="swatch">
+                        <input type="color" class="colorSelector" id="textColor" v-model="publicStyle.textColor" @input="updateColor('textColor')">
+                        <div class="info">
+                            <label for="textColor">
+                                <h1>TEXTE</h1>
+                            </label>
+                            <h2 class="hexaCode">{{ publicStyle.textColor }}</h2>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="btn" type="submit">Publier</button>
+                <button class="btn" type="button" @click="resetToInitialStyle()">Annuler</button>
+            </form>
+        </section>
 
 
-        <section class="section-marketing">
+        <section class="section-marketing module">
 
             <h1>LE FEED MARKETING</h1>
+
+            <moreDetail>
+                <template #summary>
+                    <h2>Modifier le contenu de la page d'accueil</h2>
+                </template>
+                <p>Ceci est le contenu personnalisé du détail.</p>
+            </moreDetail>
 
             <div class="container-grid">
 
                 <div class="banner" v-for="(post, index) in home" :key="post._id">
-                    <form enctype='multipart/form-data' @submit.prevent="$event => editPost('marketing' , index)">
+                    <form enctype='multipart/form-data' @submit.prevent="$event => editPost('marketing', index)">
                         <div class="banner-content">
                             <label :for="'changeImg' + index" class="label-changeFile">
                                 <svg class="icon upload-icon">
@@ -135,68 +190,64 @@
             </div>
 
         </section>
-
-
-
-
-
-
-    </div>
 </template>
 
 <script>
 import { customService } from '@/services/custom.service';
-import { mapGetters, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
+import moreDetail from "@/components/detail.vue"
 export default {
     name: 'homeEdit',
     components: {
+        moreDetail
     },
     data() {
         return {
             home: [],
+            hero: {},
             originalData: [],
-            activeIndex: '#1C1C1C',
-            titleColor: '#1C1C1C',
-            navColor: '#1C1C1C',
-            btnColor: '#1C1C1C',
+            originalHero: [],
+            newFileHero: null,
+            activeIndex: '',
+            styleForm: {}
 
         }
     },
 
     methods: {
 
-        ...mapMutations(['changePublicStyle']),
-        updatePublicStyle() {
-            this.changePublicStyle((newStyle))
+        ...mapActions(['getPublicStyle', 'updatePublicStyle']),
+
+        updateColor(selector) {
+      document.documentElement.style.setProperty(`--${selector}`, this.publicStyle[selector]);
+    },
+
+    resetToInitialStyle() {
+        this.getPublicStyle()
+  },
+
+        saveStyle() {
+            this.styleForm = { ...this.publicStyle }
+            // Appeler l'action Vuex pour mettre à jour le style public
+            this.updatePublicStyle(this.styleForm)
+                .then(() => {
+                    console.log("mise à jour du style")
+                })
+                .catch(err => {
+                    console.error("Erreur lors de la mise à jour du style:", err);
+                });
         },
 
         cancelEdit(section, index) {
 
-            if(section === 'marketing'){
-            this.home[index].titlePost = this.originalData[index].titlePost
-            this.home[index].descriptionPost = this.originalData[index].descriptionPost
-            this.home[index].imgPost = this.originalData[index].imgPost
-            this.home[index].newFile = null
+            if (section === 'marketing') {
+                this.home[index].titlePost = this.originalData[index].titlePost
+                this.home[index].descriptionPost = this.originalData[index].descriptionPost
+                this.home[index].imgPost = this.originalData[index].imgPost
+                this.home[index].newFile = null
             }
 
         },
-
-        // cancelModif(modification, index) {
-
-        //     console.log(index)
-        //     if (modification === "cardTitle") {
-
-        //         this.home[index].titlePost = this.originalData[index].titlePost
-
-        //     }
-
-        //     if (modification === "description") {
-
-        //         this.home[index].descriptionPost = this.originalData[index].descriptionPost
-
-        //     }
-        //     this.activeIndex = null
-        // },
 
         validModif(modification) {
 
@@ -212,14 +263,6 @@ export default {
 
         },
 
-        selectFileHero(event) {
-            const file = event.target.files[0];
-            if (file) {
-                this.home.imgHero = URL.createObjectURL(file);
-                this.home.newFileHero = file;
-            }
-        },
-
         selectFile1(event, index) {
             const file = event.target.files[0];
             if (file) {
@@ -227,9 +270,6 @@ export default {
                 this.home[index].newFile = file;
             }
         },
-
-
-
 
         createPost(index) {
 
@@ -242,72 +282,167 @@ export default {
             customService.createPost(formData)
                 .then(res => {
                     console.log(res)
-                    // this.$router.push({ name: 'productIndex' })
+
                 })
                 .catch(err => console.log(err))
 
         },
-
 
 
         editPost(section, index) {
 
-            if(section === 'marketing'){
-            const formData = new FormData();
-            formData.append('titlePost', this.home[index].titlePost);
-            formData.append('descriptionPost', this.home[index].descriptionPost);
-            if (this.home[index].newFile) {
-                formData.append('imgPost', this.home[index].newFile)
-            };
-            customService.postContent(this.home[index]._id, formData)
-                .then(res => {
-                    console.log(res)
-                    this.home[index].newFile = null
-                    this.originalData[index].imgPost = this.home[index].imgPost
+            if (section === 'marketing') {
+                const formData = new FormData();
+                formData.append('titlePost', this.home[index].titlePost);
+                formData.append('descriptionPost', this.home[index].descriptionPost);
+                if (this.home[index].newFile) {
+                    formData.append('imgPost', this.home[index].newFile)
+                };
 
-                })
-                .catch(err => console.log(err))
+                if (this.home[index]._id) {
+                    customService.postContent(this.home[index]._id, formData)
+                        .then(res => {
+                            console.log(res)
+                            this.home[index].newFile = null
+                            this.originalData[index].imgPost = this.home[index].imgPost
+
+                        })
+                        .catch(err => console.log(err))
+                }
+                else {
+                    customService.createPost(formData)
+                        .then(res => {
+                            console.log(res)
+                            this.home[index].newFile = null
+                            this.originalData[index].imgPost = this.home[index].imgPost
+                            console.log(res.data)
+                            this.home[index]._id = res.data.post._id
+
+                        })
+                        .catch(err => console.log(err))
+
+                }
             }
 
         },
-        
+
+        selectFileHero(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.hero.imgHero = URL.createObjectURL(file);
+                this.hero.newFile = file;
+                console.log('newFile', this.hero.newFile)
+            }
+        },
+
+        editHero() {
+
+            const formData = new FormData();
+            if (this.hero.newFile) {
+                formData.append('imgHero', this.hero.newFile)
+            };
+
+            if (this.hero._id) {
+                console.log(this.hero._id)
+                customService.postHero(this.hero._id, formData)
+                    .then(res => {
+                        this.hero.newFile = null
+                        this.originalHero.imgHero = this.hero.imgHero
+
+                    })
+                    .catch(err => console.log(err))
+            }
+            else {
+                customService.createHero(formData)
+                    .then(res => {
+                        this.hero.newFile = null
+                        this.originalHero.imgHero = this.hero.imgHero
+                        this.hero._id = res.data.newHero._id
+
+                    })
+                    .catch(err => console.log(err))
+
+            }
+        }
+
     },
 
     computed: {
-        ...mapGetters(['getPublicStyle']),
+        ...mapState(['publicStyle']),
+
 
     },
+
 
     mounted() {
 
         customService.getContent()
             .then(res => {
+                const defaultHome = {
+                    titlePost: "NOUVEAU POST",
+                    descriptionPost: "Modifier l'image, le titre et la description puis cliquez sur PUBLIER",
+                    imgPost: ""
+                };
 
-                this.originalData = JSON.parse(JSON.stringify(res.data.home))
-                this.home = res.data.home
-                console.log(this.home)
+                function fillArrayWithDefaults(arr, defaultItem, targetLength) {
+                    while (arr.length < targetLength) {
+                        arr.push({ ...defaultItem });
+                    }
+                    return arr;
+                }
 
+                const home = res.data.home || [];
+                const filledHome = fillArrayWithDefaults(home, defaultHome, 4);
 
-
-
+                this.home = filledHome;
+                this.originalData = JSON.parse(JSON.stringify(filledHome));
             })
-            .catch(err => { console.log(err) })
+            .catch(err => { console.log(err); })
 
 
-    },
+
+        customService.getHero()
+            .then(res => {
+                const defaultHero = {
+                    imgPost: ""
+                };
+
+                if (res.data.hero && res.data.hero.length > 0) {
+                    this.hero = res.data.hero[0];
+                } else {
+                    this.hero = defaultHero
+                }
+            })
+            .catch(err => console.log(err));
+    }
 
 }
 
 </script>
 
 <style scoped>
-.admin {
-    padding: 0px 3% 0px 3%;
+.module {
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0px 2px 3px 0px #00000069;
+    margin-top: 15px;
+}
+
+
+
+h1#homeManager-head {
+    color: var(--moduleColor)
+}
+
+
+.textWrap {
+    position: static;
 }
 
 #homeManager-head {
     text-align: center;
-    border-bottom: solid 2px white;
+    border-bottom: solid 2px var(--moduleColor);;
+    margin-bottom: 30px;
 }
 
 .colorSelector {
@@ -384,57 +519,6 @@ export default {
 }
 
 
-
-
-.btnMobile {
-    z-index: 9999;
-    position: fixed;
-    bottom: 20px;
-    right: 1.375rem;
-    font-size: 21px;
-    box-shadow: rgb(0 0 0 / 15%) 0px 4px 5px 2px;
-    font-family: 'Subtlecurves';
-    max-width: 100%;
-    overflow: hidden;
-    color: rgb(255, 255, 255);
-    background-color: rgb(237 49 36);
-    outline: 0px;
-    border: 0px;
-    border-radius: 19px;
-    width: auto;
-    cursor: pointer;
-    margin: 0;
-    padding: 0.45rem 1rem;
-    transition: all 0.125s ease 0s;
-}
-
-.btn-publier {
-    z-index: 1;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-}
-
-.btn {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    font-size: 15px;
-    font-family: 'Subtlecurves', cursive;
-    padding: 0.3rem 0.9rem;
-    background-color: #f68e51;
-    color: white;
-    border-radius: 9px;
-    outline: none;
-    cursor: pointer;
-    border-width: 2px;
-    box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 1px 2px #111111de;
-    transition: 0.3s ease;
-
-}
-
 /* .label-changeFile:hover+.picture .oldImg {
     transition: 0.5s ease;
     filter: brightness(0.7);
@@ -462,46 +546,9 @@ export default {
 
 
 
-
-.home {
-    margin-top: -120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.mainImage {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-}
-
-.mainImageEdit{
-    position: relative;
-    padding: 26% 5% 36% 25%;
-    display: block;
-    width: 47%;
-    height: 100%;
-    border: solid 0.3em white;
-    border-radius: 3em;
-    overflow: hidden;
-    margin: auto;
-}
-.bigImg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .section-marketing {
     position: relative;
     display: block;
-    width: 100%;
-    padding: 16px 0;
 }
 
 .container-grid {
@@ -509,10 +556,11 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 13px;
     column-gap: 16px;
-    margin: 0px 4%;
     max-width: 1000px;
     margin-right: auto;
     margin-left: auto;
+
+    margin: 10px 0;
 }
 
 .banner {
@@ -527,7 +575,7 @@ export default {
 
 .banner-content {
     overflow: hidden;
-    border-radius: 12px 12px 0 0;
+    border-radius: 12px;
     position: relative;
     padding-top: 53.33%;
     border: 5px solid white;
@@ -554,10 +602,10 @@ export default {
 
 .textWrap {
     padding: 10px 16px 11px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: flex-start; */
+    /* flex-grow: 1; */
     color: rgb(125 44 33);
 }
 
@@ -575,12 +623,14 @@ export default {
     padding: 10px;
     border-radius: 0;
     display: flex;
-    font-family: 'Subtlecurves';
+    font-family: 'Funtastic';
+    text-transform: uppercase;
     font-size: 1em;
     max-width: 100%;
     border: none;
     resize: none;
-    color: rgb(125 44 33);
+ 
+    color: var(--moduleColor)
 
 }
 
@@ -592,13 +642,17 @@ export default {
     border-radius: 0;
     cursor: pointer;
     display: block;
-    padding: 10px;
+    padding: 5px 5px 40px 5px;
     width: 100%;
-    font-family: 'Anton';
+    font-family: 'Tropica Gardens';
+    font-size: 1em;
+    line-height: 1.1;
     text-align: start;
-    color: rgb(125 44 33);
     border: none;
     resize: none;
+    overflow: hidden;
+
+    color: var(--moduleColor)
 }
 
 .cardFocus {

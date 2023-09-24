@@ -1,29 +1,31 @@
 <template>
-    <div class="admin">
-        <div class="admin-content">
-            <h2>Liste des Utilisateurs</h2>
-            <div class="content-wrap">
-                <!-- <router-link class="link" to="/admin/user/add"><font-awesome-icon class="icon" icon="fa-solid fa-pen-to-square" size="xl"/></router-link> -->
-                <button class="btn"><router-link class="link" to="/admin/user/add">AJOUTER UN UTILISATEUR</router-link></button>
-            </div> 
+    <div class="admin-content">
+        <h2>Liste des Utilisateurs</h2>
+        <div class="content-wrap">
+            <!-- <router-link class="link" to="/admin/user/add"><font-awesome-icon class="icon" icon="fa-solid fa-pen-to-square" size="xl"/></router-link> -->
+            <button class="btn"><router-link class="link" to="/admin/user/add">AJOUTER UN UTILISATEUR</router-link></button>
+        </div>
+
+        <div>
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Utilisateur</th>
-                        <th>Tel</th>
-                        <th>Role</th>
+                        <!-- <th>ID</th> -->
+                        <!-- <th>Utilisateur</th> -->
+                        <!-- <th>Role</th> -->
                         <th>email</th>
-                        <th>OPTIONS</th>
+                        <th>Tel</th>
+                        <!-- <th>OPTIONS</th> -->
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(user, index) in users" :key="user._id">
-                        <td>{{'#' + index }}</td>
-                        <td>{{ user.name + user.surname}}</td>
-                        <td>{{ user.phone }}</td>
-                        <td>{{ user.role }}</td>
+                        <!-- <td>{{'#' + index }}</td> -->
+                        <!-- <td>{{ user.name + user.surname}}</td> -->
+                        <!-- <td>{{ user.role }}</td> -->
                         <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
                         <td>
                             <!-- <font-awesome-icon class="icon" icon="fa-solid fa-pen-to-square" @click="$event => goEditUser(user._id)" size="xl" />
                             <font-awesome-icon class="icon" icon="fa-solid fa-trash-can" size='xl' v-if="user._id !== adminId" @click="$event => goDeleteUser(user._id, index)"/> -->
@@ -76,32 +78,6 @@ export default {
 </script>
 
 <style scoped>
-h2{
-    font-family: anton;
-    text-transform: uppercase;
-    font-size: 35px;
-    color: #1c1c1c;
-    padding-bottom: 0;
-    border-bottom: solid 3px #1c1c1c;
-}
-
-.icon{
-    color: #444444;
-    cursor: pointer;
-    margin: 9px;
-}
-
-.admin {
-    margin-top: 85px;
-    background-color: #ffc47a;
-    background: linear-gradient(45deg,#ffba59,#ffd6bd);
-}
-
-.admin-content {
-    box-sizing: border-box;
-    padding: 30px;
-}
-
 .content-wrap {
     margin-top: 30px;
     margin-bottom: 20px;

@@ -4,6 +4,13 @@
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Poetsen One';
+    src: url('../src/assets/fonts/PoetsenOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
   
   @font-face {
     font-family: 'Anton';
@@ -16,6 +23,28 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
+
+
+/* LES VARIABLES CSS MIS A JOUR PAR VUEX*/
+:root {
+  --backgroundColor: #3498db;
+  --secondary-color: #e74c3c;
+  --font-size: 16px;
+  --moduleColor: #e74c3c;
+  --buttonColor: #e74c3c;
+}
+
+.module{
+  background-color:  var(--moduleColor);
+}
+
+
+
+
+
+
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -35,7 +64,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: middle;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -62,13 +91,14 @@ table {
 }
 
   html{
+
     scroll-behavior:smooth;
     -webkit-tap-highlight-color: transparent;
   }
 
-  *:focus {
+  /* *:focus {
     scroll-margin: 50px;
-  }
+  } */
 
   #app {
     margin: 0 0 0 0;
@@ -76,10 +106,11 @@ table {
   }
   
   body{
-    overflow-x: hidden;
+
     overflow-wrap: break-word;
     /* Pour la compatibilité avec les anciens navigateurs */
     word-wrap: break-word;
+    overflow-x: hidden;
   }
 
   @media screen and (max-width: 767px) {
@@ -88,9 +119,10 @@ table {
 
     body {
 
-      /* a  modifier et a appliquer seulement quand menuIsActived*/
       background-color: #1c1c1cf9;
       padding-top: env(safe-area-inset-top);
+
+      
 
 
       /* pour supprimer la scroll bar*/
@@ -119,25 +151,32 @@ table {
 
   }
 
-  
-  /* Masquer la scrollbar verticale pour Chrome, Safari et Opera */
-  /* ::-webkit-scrollbar {
-    display: none;
-  } */
 
-  ::-webkit-scrollbar {
+
+  /* ::-webkit-scrollbar {
     height: 0px;
     width: 7px;
     background-color: #cfa7a4;
     border-radius: 25px;
-  }
+  } */
   
-  
+/*   
   ::-webkit-scrollbar-thumb {
     background-color: white;
     height: 0px;
     border-radius: 24px;
+  } */
+
+
+
+
+  
+  /* Masquer la scrollbar verticale pour Chrome, Safari et Opera */
+  ::-webkit-scrollbar {
+    display: none;
   }
+
+
   
   
   /* ::webkit-scrollbar-corner {
@@ -159,38 +198,58 @@ table {
 
   h1{
     user-select: none;
-    font-family: 'Poetsen one';
+    font-family: 'Funtastic';
+    text-align: center;
     color: white;
-    font-size: 2.4em;
+    font-size: 2em;
+    text-transform: uppercase;
+
+    color:  var(--titleColor);
   }
 
   h2{
     user-select: none;
-    font-family: 'Anton';
+    font-family: 'Tropica gardens';
     font-size: 1em;
-    color: white
+    /* margin: 0.7em 0px 0.7em 0 */
+
+    color:  var(--textColor);
+  }
+
+  p{
+    user-select: none;
+    font-family: 'Tropica gardens';
+    font-size: 0.95em;
+    color: white;
   }
 
   html{
     background-color: #f5ebdc;
   }
 
+
   .btn {
+    user-select: none;
+    border: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     font-size: 15px;
-      font-family: 'Poetsen One';
-      padding: 4px 6px;
-      background-color: #fef3ed;
-      color: #835c58;
-      border-radius: 5px;
-      outline: none;
-      cursor: pointer;
-      border: none;
-      /* border-width: 2px; */
-      /* border: solid white 2px; */
-      /* box-shadow: 0px 1px 2px #111111de; */
-      box-shadow: 0px 2px 2px 0px #75234133;
-      transition: 0.3s ease;
-  }
+    font-family: 'Subtlecurves', cursive;
+    margin: 5px 5px;
+    padding: 0.3rem 0.9rem;
+    background-color: #f68e51;
+    color: white;
+    border-radius: 9px;
+    outline: none;
+    cursor: pointer;
+    border-width: 2px;
+    box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 1px 2px #111111de;
+    transition: 0.3s ease;
+
+    background-color:  var(--buttonColor);
+
+}
 
   
 
@@ -198,36 +257,14 @@ table {
   display: none;
 }
 
-h1 {
-  font-family: 'Poetsen one';
-  max-width: 100%;
-  font-size: 2.4em;
-  color: #835b58;
 
-
+.textWrap {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
-
-h2 {
-  font-family: 'Poetsen one';
-  max-width: 100%;
-  font-size: 1.45em;
-  color: #fa9a71;
-  margin: 0.5em;
-}
-
-
-
 
 @media screen and (max-width: 900px){
-
-.navbar{
-    display: none;
-}
-
-.navBar{
-  display: flex;
-}
-
 
 
 }

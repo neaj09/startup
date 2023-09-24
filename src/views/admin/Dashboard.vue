@@ -14,8 +14,5 @@ export default{
 
 <style scoped>
 
-.admin{
-    margin-top:85px;;
-}
 
 </style> 
