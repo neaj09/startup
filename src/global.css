@@ -19,10 +19,56 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Funtastic';
+    src: url('../src/assets/fonts/Funtastic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+  @font-face {
+    font-family: 'Tropica gardens';
+    src: url('../src/assets/fonts/TropicaGardens-Sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../src/assets/fonts/materialicon.woff2') format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+
+
+
+
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+
 
 
 
@@ -36,6 +82,11 @@
 }
 
 .module{
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0px 2px 3px 0px #00000069;
+  margin-top: 15px;
   background-color:  var(--moduleColor);
 }
 
@@ -88,6 +139,16 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+/* Pour supprimer la petite flèche de détail Chrome, Safari, Edge */
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Pour supprimer la petite flèche de détail Pour Firefox */
+details > summary::marker {
+  display: none;
 }
 
   html{
@@ -212,7 +273,7 @@ table {
     font-family: 'Tropica gardens';
     font-size: 1em;
     /* margin: 0.7em 0px 0.7em 0 */
-
+    text-align: center;
     color:  var(--textColor);
   }
 
@@ -248,6 +309,7 @@ table {
     transition: 0.3s ease;
 
     background-color:  var(--buttonColor);
+    line-height: 1.4em;
 
 }
 

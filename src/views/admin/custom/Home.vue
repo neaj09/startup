@@ -1,7 +1,10 @@
 <template>
-        <h1 id="homeManager-head">HOME MANAGER</h1>
-        <section id="heroEdit" class="module">
-            <h1>IMAGE HERO</h1>
+    <h1 id="homeManager-head">HOME MANAGER</h1>
+
+    <div id="homeManager-content">
+    <section id="heroEdit" class="module">
+        <h1 @click="collapseSection('showHero')">IMAGE HERO</h1>
+        <div v-if="this.showHero">
             <moreDetail>
                 <template #summary>
                     <h2>Modifier l'image de couverture de la page d'accueil</h2>
@@ -26,18 +29,27 @@
                 </div>
                 <button type="submit" class="btn">PUBLIER</button>
             </form>
-        </section>
+        </div>
+    </section>
 
-        <section id="colorTable" class="module">
+    <section id="colorTable" class="module">
 
-            <h1>TABLE DES COULEURS</h1>
+        <h1 @click="collapseSection('showColorTable')">TABLE DES COULEURS</h1>
 
+        <div v-if="this.showColorTable">
             <moreDetail>
                 <template #summary>
-                    <h2>Modifier le thème avec la table des couleurs</h2>
+                    <h2>Personnalisez votre application avec la table des couleurs</h2>
                 </template>
-                <p>Ceci est le contenu personnalisé du détail.</p>
+                <p>
+                    GENERAL: couleur du fond de l'ensemble de votre application.
+                    <br><br>
+                    PAGE HOME: couleur du fond de la page d'accueuil
+                    <br><br>
+                    MODULES: couleur de fond des modules produits
+                </p>
             </moreDetail>
+
 
             <form @submit.prevent="saveStyle">
 
@@ -45,8 +57,8 @@
 
                     <div class="swatch">
 
-                        <input type="color" class="colorSelector" id="backgroundColor"
-                            v-model="publicStyle.backgroundColor" @input="updateColor('backgroundColor')">
+                        <input type="color" class="colorSelector" id="backgroundColor" v-model="publicStyle.backgroundColor"
+                            @input="updateColor('backgroundColor')">
                         <div class="info">
                             <label for="backgroundColor">
                                 <h1>GENERAL</h1>
@@ -56,7 +68,8 @@
                     </div>
 
                     <div class="swatch">
-                        <input type="color" class="colorSelector" id="homeColor" v-model="publicStyle.homeColor" @input="updateColor('homeColor')">
+                        <input type="color" class="colorSelector" id="homeColor" v-model="publicStyle.homeColor"
+                            @input="updateColor('homeColor')">
                         <div class="info">
                             <label for="homeColor">
                                 <h1>PAGE HOME</h1>
@@ -67,18 +80,20 @@
 
                     <div class="swatch">
 
-                        <input type="color" class="colorSelector" id="moduleColor" v-model="publicStyle.moduleColor"  @input="updateColor('moduleColor')">
+                        <input type="color" class="colorSelector" id="moduleColor" v-model="publicStyle.moduleColor"
+                            @input="updateColor('moduleColor')">
                         <div class="info">
                             <label for="moduleColor">
                                 <h1>MODULES</h1>
                             </label>
-                            <h2 class="hexaCode">{{ publicStyle.moduleColor }}</h2>
+                            <h2 class="hexaCode" style="color: var(--backgroundColor)">{{ publicStyle.moduleColor }}</h2>
                         </div>
                     </div>
 
                     <div class="swatch">
 
-                        <input type="color" class="colorSelector" id="buttonColor" v-model="publicStyle.buttonColor" @input="updateColor('buttonColor')">
+                        <input type="color" class="colorSelector" id="buttonColor" v-model="publicStyle.buttonColor"
+                            @input="updateColor('buttonColor')">
                         <div class="info">
                             <label for="buttonColor">
                                 <h1>BOUTTON</h1>
@@ -88,7 +103,8 @@
                     </div>
 
                     <div class="swatch">
-                        <input type="color" class="colorSelector" id="titleColor" v-model="publicStyle.titleColor" @input="updateColor('titleColor')">
+                        <input type="color" class="colorSelector" id="titleColor" v-model="publicStyle.titleColor"
+                            @input="updateColor('titleColor')">
                         <div class="info">
                             <label for="titleColor">
                                 <h1>TITRAGE</h1>
@@ -98,7 +114,8 @@
                     </div>
 
                     <div class="swatch">
-                        <input type="color" class="colorSelector" id="textColor" v-model="publicStyle.textColor" @input="updateColor('textColor')">
+                        <input type="color" class="colorSelector" id="textColor" v-model="publicStyle.textColor"
+                            @input="updateColor('textColor')">
                         <div class="info">
                             <label for="textColor">
                                 <h1>TEXTE</h1>
@@ -111,13 +128,15 @@
                 <button class="btn" type="submit">Publier</button>
                 <button class="btn" type="button" @click="resetToInitialStyle()">Annuler</button>
             </form>
-        </section>
+        </div>
+    </section>
 
 
-        <section class="section-marketing module">
+    <section id="section-marketing" class="module">
 
-            <h1>LE FEED MARKETING</h1>
+        <h1 @click="collapseSection('showFeedMarketing')">LE FEED MARKETING</h1>
 
+        <div v-if="this.showFeedMarketing">
             <moreDetail>
                 <template #summary>
                     <h2>Modifier le contenu de la page d'accueil</h2>
@@ -186,20 +205,42 @@
                     </form>
                 </div>
 
-
             </div>
+        </div>
 
-        </section>
+    </section>
+
+    <section id="section-config" class="module">
+        <h1 @click="collapseSection('showConfiguration')">CONFIGURATION</h1>
+        <div v-if="showConfiguration">
+            <div>
+            <moreDetail>
+                <template #summary>
+                    <h2>Configurez votre application</h2>
+                </template>
+                <p>Ceci est le contenu personnalisé du détail.</p>
+            </moreDetail>
+
+            <div class="Horizontal-flex">
+                <order-btn :link="customLink"/>
+                <input v-model="customLink" type="text" placeholder="Modifier le lien" />
+            </div>
+        </div>
+        </div>
+    </section>
+</div>
 </template>
 
 <script>
 import { customService } from '@/services/custom.service';
 import { mapState, mapMutations, mapActions } from "vuex";
 import moreDetail from "@/components/detail.vue"
+import orderBtn from '@/components/orderBtn.vue';
+
 export default {
     name: 'homeEdit',
     components: {
-        moreDetail
+        moreDetail, orderBtn
     },
     data() {
         return {
@@ -209,22 +250,38 @@ export default {
             originalHero: [],
             newFileHero: null,
             activeIndex: '',
-            styleForm: {}
+            styleForm: {},
 
+            showHero: false,
+            showColorTable: false,
+            showFeedMarketing: false,
+            showConfiguration: false,
+
+            customLink: ''
         }
     },
 
     methods: {
 
+
+        collapseSection(section) {
+            this[section] = !this[section]
+        },
+
         ...mapActions(['getPublicStyle', 'updatePublicStyle']),
 
         updateColor(selector) {
-      document.documentElement.style.setProperty(`--${selector}`, this.publicStyle[selector]);
-    },
+    const colorValue = this.publicStyle[selector];
+    if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(colorValue)) {
+        alert('Veuillez entrer une couleur hexadécimale valide.');
+        return;
+    }
+    document.documentElement.style.setProperty(`--${selector}`, colorValue);
+},
 
-    resetToInitialStyle() {
-        this.getPublicStyle()
-  },
+        resetToInitialStyle() {
+            this.getPublicStyle()
+        },
 
         saveStyle() {
             this.styleForm = { ...this.publicStyle }
@@ -264,12 +321,24 @@ export default {
         },
 
         selectFile1(event, index) {
-            const file = event.target.files[0];
-            if (file) {
-                this.home[index].imgPost = URL.createObjectURL(file);
-                this.home[index].newFile = file;
-            }
-        },
+    const file = event.target.files[0];
+    if (file) {
+        // Valider le type de fichier (par exemple, image/jpeg, image/png)
+        if (!['image/jpeg', 'image/png'].includes(file.type)) {
+            alert('Veuillez sélectionner une image au format JPEG ou PNG.');
+            return;
+        }
+        // Valider la taille du fichier (en octets)
+        const maxSize = 5 * 1024 * 1024; // 5 Mo
+        if (file.size > maxSize) {
+            alert('La taille de l\'image est trop grande. Veuillez sélectionner une image plus petite.');
+            return;
+        }
+
+        this.home[index].imgPost = URL.createObjectURL(file);
+        this.home[index].newFile = file;
+    }
+},
 
         createPost(index) {
 
@@ -421,7 +490,36 @@ export default {
 </script>
 
 <style scoped>
+.collapse-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.collapse-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.collapse-enter-from,
+.collapse-leave-to {
+    height: 0;
+
+}
+
+.Horizontal-flex {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btnMobile {
+    position: relative;
+    right: 0;
+    bottom: 0;
+}
+
 .module {
+    overflow: hidden;
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0px 2px 3px 0px #00000069;
@@ -441,7 +539,8 @@ h1#homeManager-head {
 
 #homeManager-head {
     text-align: center;
-    border-bottom: solid 2px var(--moduleColor);;
+    border-bottom: solid 2px var(--moduleColor);
+    ;
     margin-bottom: 30px;
 }
 
@@ -490,6 +589,7 @@ h1#homeManager-head {
     font-size: 1em;
     font-weight: normal;
     margin: 0;
+    color: var(--moduleColor);
 }
 
 .hexaCode {
@@ -546,7 +646,7 @@ h1#homeManager-head {
 
 
 
-.section-marketing {
+#section-marketing {
     position: relative;
     display: block;
 }
@@ -629,9 +729,8 @@ h1#homeManager-head {
     max-width: 100%;
     border: none;
     resize: none;
- 
-    color: var(--moduleColor)
 
+    color: var(--moduleColor)
 }
 
 .edit-card {
@@ -699,5 +798,4 @@ h1#homeManager-head {
         transform: scale(1.1);
     }
 
-}
-</style>
+}</style>

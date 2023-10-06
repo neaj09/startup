@@ -10,7 +10,6 @@ const Axios = axios.create({
 
 // intercepte la requête et ajoute le token dans l'entête Authorization
 Axios.interceptors.request.use(req => {
-
     if(accountService.isLogged){
         req.headers.Authorization = 'Bearer '+accountService.getToken()
     }

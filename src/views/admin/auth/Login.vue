@@ -1,6 +1,7 @@
 <template>
 <div class="admin">
-		<h2>Authentification</h2>
+        <div class="module">
+		<h1>Authentification</h1>
 		<form @submit.prevent="login">
 			<label>Email:</label>
 			<input type="email" v-model="credentials.email" required autocomplete="username">
@@ -9,7 +10,7 @@
 			<input type="password" v-model="credentials.password" required autocomplete="current-password">
 			<button type="submit" class="btn">Se connecter</button>
 		</form>
-
+    </div>
 </div>
 
 </template>

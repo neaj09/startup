@@ -12,27 +12,6 @@ couleur en bas de l'écran
 
 CONCEPTION
 
-page index relié à l'Api: 
-faire un template d'index et l'afficher dans la partie admin avec
-des boutons modifier
-
-un CONTENTPOST doit contenir:
-une image, un lien de redirection, un 
-
-HERO
-A LA UNE
-PROMO
-
-IndexModel:
-text 1: 
-text 2: 
-imgHero:
-
-image à la une: 
-imgUne1: vérifier format carré 
-imgUne2:
-imgUne3:
-
 PROTOCOLE DE COMMANDE
 
 authentification client => authorisation et permission
@@ -50,8 +29,6 @@ A FAIRE
 
 ETAPE I: RENDRE LE SITE FONCTIONNEL AU MINIMUM
 Fonctionnalité à implémenter:
-- changer couleur du site
-- changer image de couverture
 - rédiger le site (titrage+aide)
 - notifications (bulle parlante)
 - réponse aux requêtes 
@@ -63,13 +40,7 @@ Fonctionnalité à implémenter:
 -----> clarifier CSS (layout pr CSS commun)
 -----> corriger erreur menu -> computed
 -----> formulaire: empecher la saisie de caractère non souhaité
------> désactiver le hover pour les touch device
 
-- panier commandes
-- précommande par SMS
-- API vérif mail
-- rôle et authorisation
-- caroussel
 
 
 - vérifier les LABEL et faire attention à ce que chaque id soit unique (binder le for et le name)

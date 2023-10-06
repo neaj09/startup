@@ -1,23 +1,31 @@
 <template>
-   <div class="navDown">
-      <button :href="link" class="btnMobile">Commandez</button>
-    </div>
+      <button @click="goToExternalLink(link)" class="btnMobile">Commandez</button>
 </template>
   
 <script>
 
+function ensureHttps(url) {
+    if (url.startsWith('http://')) {
+        return 'https://' + url.substring(7);
+    } else if (!url.startsWith('https://')) {
+        return 'https://' + url;
+    }
+    return url;
+}
+
 export default {
   name: "orderBtn",
-  data() {
-    return {
-      link: ""
-
-    }
+  props: {
+    link: String
   },
 
   methods: {
-   
+  goToExternalLink(link) {
+
+    window.open(ensureHttps(link), '_blank');
   }
+
+}
 }
 </script>
   

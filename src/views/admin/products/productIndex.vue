@@ -1,64 +1,68 @@
 <template>
-    <div class="admin">
-        <div class="admin-content">
-            <router-link class="navBarLink" to="/admin/products/add">ajout produit</router-link>
+        <router-link class="navBarLink" to="/admin/products/add">ajout produit</router-link>
             <h1>Liste des Produits</h1>
             <h2>Assurez-vous que votre menu est correct</h2>
-
+<categoryIndex/>
             <div class="content-wrap">
-             
-            <table>
-                <thead>
-                    <tr>
-                        <th>index</th>
-                        <th>NOM</th>
-                        <th>DESCRIPTION</th>
-                        <th>IMAGE</th>
-                        <th>PRIX</th>
-                        <th>DISPO</th>
-                        <th>OPTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(product, index) in products" :key="product._id">
-                        <td>{{'#' + index }}</td>
-                        <td>{{ product.nameProduct}}</td>
-                        <td>{{ product.descriptionProduct }}</td>
-                        <td><img :src="product.imageUrl" class="vignette"></td>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>index</th>
+                            <th>NOM</th>
+                            <th>DESCRIPTION</th>
+                            <th>IMAGE</th>
+                            <th>PRIX</th>
+                            <th>DISPO</th>
+                            <th>OPTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product, index) in products" :key="product._id">
+                            <td>{{ '#' + index }}</td>
+                            <td>{{ product.nameProduct }}</td>
+                            <td>{{ product.descriptionProduct }}</td>
+                            <td><img :src="product.imageUrl" class="vignette"></td>
 
 
-                        <!-- faire un computed  -->
-                        <td>{{ product.prixProduct.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }) }}</td>
-                        <td><div :class="product.available ? 'circle green' : 'circle red'"></div></td>
+                            <!-- faire un computed  -->
+                            <td>{{ product.prixProduct.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }) }}
+                            </td>
+                            <td>
+                                <div :class="product.available ? 'circle green' : 'circle red'"></div>
+                            </td>
 
-                        <td>
-                            <div class="caseBtn">
-                            <button @click="$event => goEditProduct(product._id)" class="btn">Modifier</button>
-                            <button @click="$event => goDeleteProduct(product._id, index)"
-                                class="btn delete">Supprimer</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        </div>
-    </div>
+                            <td>
+                                <div class="caseBtn">
+                                    <button @click="$event => goEditProduct(product._id)" class="btn">Modifier</button>
+                                    <button @click="$event => goDeleteProduct(product._id, index)"
+                                        class="btn delete">Supprimer</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 </template>
 
 <script>
 
-import {productService} from '@/services/product.service'
+import { productService } from '@/services/product.service'
+import categoryIndex from '@/components/category.vue'
 
 export default {
     name: 'productIndex',
+    components: {
+        categoryIndex,
+
+    },
     data() {
         return {
             products: [],
         }
     },
 
-    
+
 
     methods: {
         goEditProduct(id) {
@@ -68,8 +72,9 @@ export default {
         goDeleteProduct(id, index) {
             productService.deleteProduct(id)
                 .then(res => {
-                console.log(res.data.message);
-                this.products.splice(index, 1)})
+                    console.log(res.data.message);
+                    this.products.splice(index, 1)
+                })
                 .catch(err => console.log(err))
         }
 
@@ -79,18 +84,19 @@ export default {
             .then(res => {
                 this.products = res.data.Allproduct
             })
-            .catch(err => {console.log(err)})
+            .catch(err => { console.log(err) })
+
     }
 }
 
 </script>
 
 <style scoped>
-
-.caseBtn{
+.caseBtn {
     display: flex;
 }
-.vignette{
+
+.vignette {
     width: 80px;
 }
 
@@ -118,7 +124,7 @@ table {
 
 table thead tr {
     height: 60px;
-    background: #1c1c1c;
+    background: var(--textColor);
 }
 
 table td,
@@ -130,7 +136,7 @@ table th {
 table th {
     font-family: 'Subtlecurves';
     font-size: 18px;
-    color: #fff;
+    color: var(--moduleColor);
     line-height: 1.2;
     font-weight: unset;
 }
@@ -180,15 +186,10 @@ tbody tr:nth-child(even) {
 
 
     .btn:hover {
-    background-color: #ffbd6c;
-    box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 4px 2px #11111199;
-    transform: scale(1.1);
-}
+        background-color: #ffbd6c;
+        box-shadow: inset 0px 1px 0px 1px #ffffff5e, inset 0px -1px 0px 1px #0000003b, 0px 4px 2px #11111199;
+        transform: scale(1.1);
+    }
 
 }
-
-
-
-
-
 </style> 

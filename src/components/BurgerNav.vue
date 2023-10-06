@@ -136,7 +136,7 @@ export default {
   /* background-color: #1c1c1c8a; */
   padding: 5px;
   border-radius: 6px;
-  border: 1px solid white;
+  border: 2px solid white;
 }
 
 .navUl:last-child {

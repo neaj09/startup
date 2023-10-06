@@ -18,7 +18,8 @@
     "socket.io-client": "^4.7.2",
     "vue": "^3.2.47",
     "vue-router": "^4.0.3",
-    "vuedraggable": "^2.24.3",
+    "vuedraggable": "^4.1.0",
+    "vuelidate": "^0.7.7",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

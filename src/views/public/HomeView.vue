@@ -4,9 +4,6 @@
     <div class="mainImage">
       <img v-if="hero" class="bigImg" :src="hero" alt="">
     </div>
-    <!-- <div class="navDown">
-      <button class="btnMobile">Commandez</button>
-    </div> -->
     <orderBtn/>
     <section class="section-marketing">
       <div class="container-grid">
@@ -87,7 +84,7 @@ export default {
   top: -1px;
   position: relative;
   width: 100%;
-  padding-bottom: 500px;
+  padding-bottom: 670px;
   overflow: hidden;
 }
 
